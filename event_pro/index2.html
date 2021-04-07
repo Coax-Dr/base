@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件冒泡</title>
+
+  <style>
+    .father {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    .child {
+      width: 100px;
+      height: 100px;
+
+      margin-left: 300px;
+    }
+
+    .child.child-1 {
+      background-color: red;
+    }
+
+    .child.child-2 {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div class="child child-1"></div>
+    <div class="child child-2"></div>
+  </div>
+  <script>
+    // 事件冒泡：事件开始时由具体的元素接收，然后逐级向上传递到较为不具体的节点。
+    var oFather = document.getElementsByClassName('father')[0];
+    var oChild1 = document.getElementsByClassName('child-1')[0];
+    var oChild2 = document.getElementsByClassName('child-2')[0];
+
+    oFather.onclick = function () {
+      console.log('father');
+    }
+    oChild1.onclick = function (event) {
+      event.stopPropagation(); // 阻止向上传递
+      // 被触发事件的信息的集合。
+      console.log('child-1');
+    }
+    oChild2.onclick = function (event) {
+      event.cancelBubble = true; // 取消冒泡
+      console.log('child-2');
+    }
+  </script>
+</body>
+
+</html>

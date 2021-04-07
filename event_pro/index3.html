@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件代理</title>
+</head>
+
+<body>
+  <div id='app'></div>
+</body>
+<script>
+  var oListWrapper = document.createElement('ul');
+  var oApp = document.getElementById('app');
+  for (var i = 0; i < 10; i++) {
+    var oLi = document.createElement('li');
+    oLi.innerText = '列表' + (i + 1) + '第几项'
+    oListWrapper.appendChild(oLi);
+  }
+  var oItems = document.getElementsByTagName('li');
+  oListWrapper.onclick = function (e) {
+    var e = e || window.e;
+    var tar = e.target || e.srcElement;
+    var tagName = tar.tagName.toLowerCase();
+
+    if (tagName === 'li') {
+      console.log(tar.innerText);
+      var index = [].indexOf.call(oItems, tar)
+      console.log(index);
+    }
+
+  }
+  oApp.appendChild(oListWrapper);
+</script>
+
+</html>
