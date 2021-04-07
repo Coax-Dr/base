@@ -25,7 +25,7 @@
     var tar = e.target || e.srcElement;
     var tagName = tar.tagName.toLowerCase();
 
-    if (tagName === 'li') {
+    if (tagName === 'li' || tagName === 'div') {
       console.log(tar.innerText);
       var index = [].indexOf.call(oItems, tar)
       console.log(index);
