@@ -1,4 +1,4 @@
-; ((doc, location) => {
+; ((doc, location, storage) => {
   const oInput = doc.querySelector('#login');
   const oBtn = doc.querySelector('#loginBtn');
 
@@ -21,14 +21,9 @@
     if (!oInput.value) {
       return;
     }
-    // 如果输入错误
-    if (oInput.value !== '123') {
-      alert('登陆信息错误!!!');
-      return;
-    }
 
-    alert('登陆成功!!!');
+    storage.setItem("userName", oInput.value);
     location.href = '/index.html';
   }
   init();
-})(document, location);
+})(document, location, localStorage);
